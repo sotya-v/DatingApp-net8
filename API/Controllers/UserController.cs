@@ -18,9 +18,9 @@ public class UserController (DataContext context): ControllerBase
     }
 
     [HttpGet("{id:int}")]
-    public ActionResult<AppUser> GetUser(int id)
+    public async Task< ActionResult<AppUser>> GetUser(int id)
     {
-        var user = context.Users.Find(id);
+        var user = await context.Users.FindAsync(id);
 
         if (user == null) return NotFound();
         return user;
